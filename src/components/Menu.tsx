@@ -55,7 +55,7 @@ const Menu: FC = () => {
         </Link>
       </ListItem>
       <ListItem index={1} isExpanded={isExpanded}>
-        <a title="yas" href="https://github.com/oleob/kaffepau.se">
+        <a title="kildekode" href="https://github.com/oleob/kaffepau.se">
           <Code />
         </a>
       </ListItem>
