@@ -33,5 +33,7 @@ const S = {
     justify-content: center;
     align-items: flex-end;
     padding: 1rem;
+    top: 0;
+    left: 0;
   `,
 };

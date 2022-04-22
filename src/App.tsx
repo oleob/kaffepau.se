@@ -25,6 +25,12 @@ function App() {
 
   return (
     <S.RootView>
+      <S.VideoBackground>
+        <S.VideoWrapper>
+          <S.Video autoPlay playsInline muted id="video" />
+          <Overlay />
+        </S.VideoWrapper>
+      </S.VideoBackground>
       {!!activeQuestion && (
         <S.Question>
           <S.Description>{activeQuestion.description}</S.Description>
@@ -50,8 +56,8 @@ function App() {
 const S = {
   Question: styled.div`
     margin-top: 2rem;
-    max-width: 40rem;
-    padding: 2rem;
+    max-width: 30rem;
+    padding: 1rem;
     background-color: #399e5a;
     margin-left: auto;
     margin-right: auto;
@@ -69,17 +75,24 @@ const S = {
   RootView: styled.div`
     display: flex;
     flex-direction: column;
+    align-items: center;
+  `,
+  VideoBackground: styled.div`
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background-color: #191923;
   `,
   VideoWrapper: styled.div`
     max-width: 40rem;
+    position: relative;
   `,
   ButtonContainer: styled.div`
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     flex-direction: row;
-    column-gap: 1rem;
-    padding: 2rem;
+    padding: 1rem 2rem;
   `,
   Button: styled.button`
     background-color: rgba(25, 25, 35, 0.7);
