@@ -90,9 +90,11 @@ const S = {
   ButtonContainer: styled.div`
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
     flex-direction: row;
     padding: 1rem 2rem;
+    gap: 1rem;
+    flex-wrap: wrap;
   `,
   Button: styled.button`
     background-color: rgba(25, 25, 35, 0.7);

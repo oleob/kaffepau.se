@@ -23,14 +23,18 @@ const createPos = () => {
 const getStart = (
   question: Question | undefined,
   vote: Vote
-): "left" | "right" => {
-  if (
-    !!question &&
-    Object.values(question.alternatives)[0].value === vote.value
-  ) {
-    return "left";
+): [string, string] => {
+  const alternativeList = Object.values(question?.alternatives ?? {});
+  if (alternativeList[0].value === vote.value) {
+    return ["left", "bottom"];
   }
-  return "right";
+  if (alternativeList[1].value == vote.value) {
+    return ["right", "bottom"];
+  }
+  if (alternativeList[2].value === vote.value) {
+    return ["left", "top"];
+  }
+  return ["right", "top"];
 };
 
 export const Emitter = () => {
@@ -43,22 +47,26 @@ export const Emitter = () => {
   >({});
 
   const addNewParticle = (vote: Vote) => {
-    const start = getStart(question, vote);
+    const [startH, startV] = getStart(question, vote);
     const endPos = createPos();
     const animation = keyframes`
           0% {
-        ${start}: 0;
-        bottom: 0;
+        transform: scale(0);
+        ${startH}: -10px;
+        ${startV}: -10px;
+      }
+      25% {
+        transform: scale(1);
       }
       50% {
-        ${start}: ${endPos.x / 2}px;
-        bottom: ${endPos.y / 2}px;
+        ${startH}: ${endPos.x / 2}px;
+        ${startV}: ${endPos.y / 2}px;
         opacity: 1;
       }
       100% {
         opacity: 0;
-        ${start}: ${endPos.x}px;
-        bottom: ${endPos.y}px;
+        ${startH}: ${endPos.x}px;
+        ${startV}: ${endPos.y}px;
       }
     `;
     setActiveParticles((prevValue) => ({

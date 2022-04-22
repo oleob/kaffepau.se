@@ -10,20 +10,23 @@ export const VoteBar = ({
   question: Question;
 }) => {
   const total = useMemo(
-    () =>
-      Math.max(
-        Object.values(votes).reduce((sum, value) => sum + value, 0),
-        1
-      ),
+    () => Object.values(votes).reduce((sum, value) => sum + value, 0),
+
     [votes]
   );
+
+  console.log(Object.values(question.alternatives).length);
 
   return (
     <S.VoteBar>
       {Object.values(question.alternatives || {}).map(({ color, value }) => (
         <S.Part
           key={value}
-          value={((100 * (votes?.[value] ?? 0)) / total).toFixed(2)}
+          value={
+            total > 0
+              ? ((100 * (votes?.[value] ?? 0)) / total).toFixed(2)
+              : (100 / Object.values(question.alternatives).length).toFixed(2)
+          }
           color={color}
         />
       ))}
@@ -42,7 +45,7 @@ const S = {
     display: flex;
     width: 70%;
     border-radius: 9999px;
-    border: 2px solid rgba(25, 25, 35, 0.5);
+    border: 2px solid rgba(25, 25, 35, 0.9);
     overflow: hidden;
   `,
 };
