@@ -25,13 +25,13 @@ const getStart = (
   vote: Vote
 ): [string, string] => {
   const alternativeList = Object.values(question?.alternatives ?? {});
-  if (alternativeList[0].value === vote.value) {
+  if (alternativeList[0]?.value === vote.value) {
     return ["left", "bottom"];
   }
-  if (alternativeList[1].value === vote.value) {
+  if (alternativeList[1]?.value === vote.value) {
     return ["right", "bottom"];
   }
-  if (alternativeList[2].value === vote.value) {
+  if (alternativeList[2]?.value === vote.value) {
     return ["left", "top"];
   }
   return ["right", "top"];

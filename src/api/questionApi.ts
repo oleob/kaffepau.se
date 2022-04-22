@@ -32,22 +32,22 @@ export const sendAnswer = (vote: Vote, questionId: string) => {
 };
 
 export const useQuestion = (questionId: string) => {
-  const [questionList, setQuestionList] = useState<Question | undefined>(
-    undefined
-  );
+  const [question, setQuestion] = useState<Question | undefined>(undefined);
   const effectHandler = useSubscriberHandler(() => {
     const questionsRef = ref(db, `questions/${questionId}/`);
     const unsubscribe = onValue(questionsRef, (snapshot) => {
       if (questionId) {
         const data: Question = snapshot.val();
-        setQuestionList(data);
+        setQuestion(data);
+      } else {
+        setQuestion(undefined);
       }
     });
     return unsubscribe;
   });
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(effectHandler, [questionId]);
-  return questionList;
+  return question;
 };
 
 export const useActiveQuestion = () => {
