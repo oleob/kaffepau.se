@@ -79,6 +79,7 @@ export const Emitter = () => {
     if (vote) {
       addNewParticle(vote);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [vote]);
 
   return (
