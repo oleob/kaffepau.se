@@ -58,10 +58,6 @@ const S = {
     margin-top: 2rem;
     max-width: 30rem;
     padding: 1rem;
-    background-color: #399e5a;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 4px;
   `,
 
   Description: styled.h1`
