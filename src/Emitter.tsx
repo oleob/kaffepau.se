@@ -95,7 +95,7 @@ export const Emitter = () => {
       {!!question &&
         Object.values(activeParticles).map((vote) => (
           <S.Particle key={vote.id} animation={vote.animation}>
-            {question.alternatives[vote.value].emoji}
+            {question.alternatives[vote.value]?.emoji}
           </S.Particle>
         ))}
     </>
