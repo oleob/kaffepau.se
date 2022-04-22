@@ -28,7 +28,7 @@ const getStart = (
   if (alternativeList[0].value === vote.value) {
     return ["left", "bottom"];
   }
-  if (alternativeList[1].value == vote.value) {
+  if (alternativeList[1].value === vote.value) {
     return ["right", "bottom"];
   }
   if (alternativeList[2].value === vote.value) {
